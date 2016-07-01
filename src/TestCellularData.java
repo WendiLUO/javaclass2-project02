@@ -3,7 +3,7 @@
  *  Given a country name and a range of years, computes the total number of subscriptions
  *  during that period.
  *
- *  @author Foothill College, [YOUR NAME HERE]
+ *  @author Foothill College, Wendi Luo
  */
 public class TestCellularData {
 
@@ -119,8 +119,51 @@ public class TestCellularData {
         
         
         // TO COMPLETE: For full credit, include test cases in addition to those provided.
-        //
+		System.out.println("\n\nTesting with My 5 Row Table With All Data:");
+		final double[] aruba = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.029310471,0,0,2.138784453,3.605985937,3.98141538,6.16435217,13.48254011,16.50927821,57.05427692,65.05605558,72.10431377,99.64250268,103.3849507,108.1325002,112.2180618,119.2038996,126.2103374,129.72824,0,131.8565401};
+		final double[] andorra = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.307211734,1.278625641,1.250259142,4.424155104,8.538444783,13.44671556,22.12730607,32.14530928,35.99902139,43.27794118,45.77115817,68.60251444,73.82494308,79.48487497,84.27763597,78.1171579,80.2836099,82.06181111,84.06818386,83.53432222,81.50204186};
+		final double[] afghanistan = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.112598381,0.865196277,2.498055472,4.826865367,9.833164022,17.71624331,29.22037376,37.89493697,45.77817474,60.32631999,60.35299258};
+		final double[] angola = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.009672748,0.015532086,0.016472597,0.026485822,0.055130843,0.07474762,0.177638088,0.185322296,0.521366177,0.940444726,2.269621281,4.63174063,9.738161173,17.83989624,28.01098233,36.98368954,42.84657348,45.57339756,47.0305726,47.07374094};
+		final double[] albania = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.068840778,0.099059921,0.168397958,0.331772024,0.901406013,11.94887288,26.07553141,33.95706284,39.16395669,47.87802749,60.06734238,73.35038415,58.91235149,78.1845877,85.468247,98.29153459,110.6865316};
+
+		startingYear = 1960;
+		
+		numRows = 5;
+		numColumns = aruba.length;
+		
+		datatable = new CellularData(numRows, numColumns, startingYear);
+		
+		datatable.addCountry("aruba", aruba);
+		datatable.addCountry("andorra", andorra);
+		datatable.addCountry("afghanistan", afghanistan);
+		datatable.addCountry("angola", angola);
+		datatable.addCountry("albania", albania);
+		
+        System.out.println(datatable);
+
+        totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("andorra",1975,1995);
+		System.out.printf("andorra (1975 to 1995): %.2f \n", totalSubscriptions);
+
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("angola",1960,2000);
+		System.out.printf("angola (1960 to 2000): %.2f \n", totalSubscriptions);
+		
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("albania",1997, 1997);
+		System.out.printf("albania (1997 to 1997): %.2f \n", totalSubscriptions);
+		
+
         // TO COMPLETE: Also, make sure to test for other invalid requests.
-        //
+		System.out.println("\n\nTesting with My 5 Row Table With Invalid Data:");
+		
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("make up country",1987, 1999);
+		System.out.printf("make up country (1987 to 1999): %.2f \n", totalSubscriptions);
+		
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("andorra",1999,1998);
+		System.out.printf("andorra (1999 to 1998): %.2f \n", totalSubscriptions);
+
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("angola",1800,1990);
+		System.out.printf("angola (1800 to 1990): %.2f \n", totalSubscriptions);
+		
+		totalSubscriptions = datatable.getNumSubscriptionsInCountryForPeriod("albania",1997, 2997);
+		System.out.printf("albania (1997 to 2997): %.2f \n", totalSubscriptions);
 	}
 }
